@@ -64,6 +64,7 @@ button:focus {
   flex-direction: column;
   align-items: center;
   margin-top: 3%;
+  margin-bottom: 5%;
 }
 
 .card {
@@ -107,4 +108,49 @@ button:focus {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+#username {
+  color: #9554ae;
+}
+
+/* Overview */
+#overview {
+  width: 40vw;
+  margin-bottom: 2vw;
+  display: flex;
+  flex-direction: column;
+}
+
+#overview-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#percent-container {
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#percent-container h1 {
+  margin-bottom: 3%;
+}
+
+#amounts-container,
+#overview-heading {
+  margin-left: 5%;
+}
+
+#overview-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#overview-top h2 {
+  margin-right: 10%;
 }

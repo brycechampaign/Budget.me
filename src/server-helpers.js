@@ -17,3 +17,7 @@ export const addTransaction = (user, tx) => {
     notes
   });
 };
+
+export const getMonthlyBudget = (user, month) => {
+  return axios.get(`/goals/${user}/${month}`).then(results => results.data);
+};
