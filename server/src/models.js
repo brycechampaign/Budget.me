@@ -1,4 +1,4 @@
-const { Tx, Month, Budget } = require('./db/index');
+const { Tx, Month, Budget } = require('../db/index');
 
 module.exports.createBudget = (user, goal, ...transaction) => {
   categories = [
@@ -29,4 +29,32 @@ module.exports.getUserTxsInMonth = async (user, month) => {
   }
 
   throw new Error('No transactions found for given month');
+};
+
+module.exports.addTransaction = async (
+  user,
+  category,
+  amount,
+  recipient,
+  notes,
+  date
+) => {
+  const budget = await Budget.findOne({ user });
+  const month = date.getMonth();
+  date = date.toLocaleString('en-US');
+
+  for (let i = 0; i < budget.months.length; i++) {
+    const currMonth = budget.months[i];
+    if (currMonth.num === month) {
+      budget.months[i].transactions.push(
+        new Tx({ category, amount, recipient, notes, date })
+      );
+
+      budget.save(err => {
+        if (err !== null) throw new Error(err);
+      });
+
+      return;
+    }
+  }
 };

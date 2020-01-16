@@ -4,12 +4,23 @@ import { getTransactionsForMonth } from '../server-helpers';
 
 export default () => {
   const [transactions, setTransactions] = useState([]);
+  const [user, setUser] = useState('bryce');
 
-  useEffect(() => {
-    getTransactionsForMonth('bryce', 0).then(transactions =>
+  const updateTransactions = () => {
+    return getTransactionsForMonth(user, 0).then(transactions =>
       setTransactions(transactions)
     );
+  };
+
+  useEffect(() => {
+    updateTransactions();
   }, []);
 
-  return <TxContainer transactions={transactions} />;
+  return (
+    <TxContainer
+      transactions={transactions}
+      user={user}
+      updateTransactions={updateTransactions}
+    />
+  );
 };

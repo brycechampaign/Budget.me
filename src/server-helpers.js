@@ -5,3 +5,15 @@ export const getTransactionsForMonth = (user, month) => {
     .get(`/transactions/${user}/${month}`)
     .then(results => results.data);
 };
+
+export const addTransaction = (user, tx) => {
+  const { amount, category, recipient, date, notes } = tx;
+
+  return axios.post(`/transactions/${user}`, {
+    amount,
+    category,
+    recipient,
+    date,
+    notes
+  });
+};

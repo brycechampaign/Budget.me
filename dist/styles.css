@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap');
+
+* {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: black;
+  height: 1px;
+}
+
+button,
+input[type='submit'] {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 0;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  color: #ffffff;
+  background-color: #9555af;
+}
+
+button:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
+button {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: none;
+}
+
+/* Prevent sticky-focus*/
+
+button:hover {
+  color: white;
+  border-color: currentColor;
+  background-color: #8c4ea3;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
+    0 0 0 1.5px rgba(255, 105, 180, 0.5);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3%;
+}
+
+.card {
+  box-shadow: 1px 4px 7px 2px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 2%;
+}
+
+.tx {
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#txContainer {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  /* height: 80vh; */
+  justify-content: center;
+  /* overflow-y: scroll; */
+}
+
+#container-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#add-tx-button {
+  margin-top: 10%;
+}
+
+#tx-body {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
