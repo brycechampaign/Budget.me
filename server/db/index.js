@@ -16,6 +16,7 @@ const txSchema = new mongoose.Schema({
 });
 
 const monthSchema = new mongoose.Schema({
+  num: Number,
   goal: Number,
   transactions: [txSchema]
 });
