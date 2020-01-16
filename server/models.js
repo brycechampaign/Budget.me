@@ -7,7 +7,8 @@ module.exports.createBudget = (user, goal, ...transaction) => {
   ];
 
   const month = new Month({
-    goal
+    goal,
+    num: new Date().getMonth()
   });
 
   const budget = new Budget({
@@ -17,4 +18,15 @@ module.exports.createBudget = (user, goal, ...transaction) => {
   });
 
   budget.save();
+};
+
+module.exports.getUserTxsInMonth = async (user, month) => {
+  const budget = await Budget.findOne({ user });
+
+  for (let i = 0; i < budget.months.length; i++) {
+    const currMonth = budget.months[i];
+    if (currMonth.num === month) return currMonth.transactions;
+  }
+
+  throw new Error('No transactions found for given month');
 };
