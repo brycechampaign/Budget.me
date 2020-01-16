@@ -5,7 +5,7 @@ router.get('/transactions/:user/:month', (req, res) => {
   const { user, month } = req.params;
   getUserTxnsInMonth(user, Number(month))
     .then(txns => res.send(txns))
-    .catch(err => console.error(err));
+    .catch(() => res.sendStatus(404));
 });
 
 router.post('/transactions/:user', (req, res) => {
@@ -14,7 +14,7 @@ router.post('/transactions/:user', (req, res) => {
 
   addTransaction(user, category, amount, recipient, notes, (date = new Date()))
     .then(() => res.sendStatus(201))
-    .catch(err => console.error(err));
+    .catch(() => res.sendStatus(500));
 });
 
 module.exports = router;
