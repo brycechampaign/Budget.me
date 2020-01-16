@@ -22,7 +22,8 @@ const monthSchema = new mongoose.Schema({
 
 const budgetSchema = new mongoose.Schema({
   user: String,
-  months: [monthSchema]
+  months: [monthSchema],
+  categories: Array
 });
 
 module.exports = {
