@@ -51,7 +51,7 @@ module.exports.addTransaction = async (
       );
 
       budget.save(err => {
-        throw new Error('Error saving transaction');
+        if (err !== null) throw new Error(err);
       });
 
       return;
