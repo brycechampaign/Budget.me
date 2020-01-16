@@ -58,3 +58,14 @@ module.exports.addTransaction = async (
     }
   }
 };
+
+module.exports.getGoal = async (user, month) => {
+  const budget = await Budget.findOne({ user });
+
+  for (let i = 0; i < budget.months.length; i++) {
+    const currMonth = budget.months[i];
+    if (currMonth.num === month) {
+      return currMonth.goal;
+    }
+  }
+};
