@@ -1,6 +1,6 @@
 const { getUserTxsInMonth, addTransaction } = require('./models.js');
 
-module.exports.getUserTxnsInMonth = user => {
+module.exports.getUserTxnsInMonth = (user, month) => {
   return getUserTxsInMonth(user, month);
 };
 
