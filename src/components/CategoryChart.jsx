@@ -7,6 +7,13 @@ const CategoryChart = ({ categoryMap, totalSpent }) => {
   const labels = Object.keys(categoryMap);
   const series = Object.values(categoryMap);
 
+  let mostExpensive = labels[0];
+  for (let category in categoryMap) {
+    if (categoryMap[category] > categoryMap[mostExpensive]) {
+      mostExpensive = category;
+    }
+  }
+
   const data = {
     series,
     labels
@@ -20,9 +27,15 @@ const CategoryChart = ({ categoryMap, totalSpent }) => {
 
   const type = 'Pie';
   return (
-    <div className="card chart-container">
-      <h2>Category Distribution</h2>
-      <ChartistGraph data={data} type={type} options={options} />
+    <div className="card chart-container" id="category-container">
+      <div>
+        <h2>Category Distribution</h2>
+        <ChartistGraph data={data} type={type} options={options} />
+      </div>
+      <div>
+        <h2>Wow, you really like:</h2>
+        <span>{mostExpensive}</span>
+      </div>
     </div>
   );
 };
