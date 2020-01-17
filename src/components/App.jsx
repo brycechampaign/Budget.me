@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TxContainer from './TxContainer';
 import { getTransactionsForMonth, getMonthlyBudget } from '../server-helpers';
 import Overview from './Overview';
 import HistoryChart from './HistoryChart';
+import CategoryChart from './CategoryChart';
+import TxContainer from './TxContainer';
 
 export default () => {
   const [transactions, setTransactions] = useState([]);
@@ -11,6 +12,7 @@ export default () => {
   const [month, setMonth] = useState(null);
   const [totalSpent, setTotalSpent] = useState(null);
   const [income, setIncome] = useState(null);
+  const [categories, setCategories] = useState({});
 
   const updateTransactions = () => {
     return getTransactionsForMonth(user, month).then(transactions =>
@@ -22,19 +24,30 @@ export default () => {
     getMonthlyBudget(user, month).then(budget => setMonthlyBudget(budget));
   };
 
-  const getTotalSpentAndIncome = () => {
+  const getStats = () => {
     let income = 0;
     let outcome = 0;
+    const categoriesTemp = {};
 
     transactions.forEach(tx => {
-      const { amount } = tx;
-      if (tx.category === 'income') {
+      const { amount, category } = tx;
+
+      if (category === 'income') {
         income += amount;
       } else {
+        const categoryAmount = categoriesTemp[category];
+
+        if (categoryAmount === undefined) {
+          categoriesTemp[category] = amount;
+        } else {
+          categoriesTemp[category] = categoryAmount + amount;
+        }
+
         outcome += amount;
       }
     });
 
+    setCategories(categoriesTemp);
     setIncome(income);
     setTotalSpent(outcome);
   };
@@ -52,7 +65,7 @@ export default () => {
 
   useEffect(() => {
     if (transactions) {
-      getTotalSpentAndIncome();
+      getStats();
     }
   }, [transactions]);
 
@@ -76,6 +89,12 @@ export default () => {
       monthlyBudget !== null &&
       transactions ? (
         <HistoryChart transactions={transactions} budget={monthlyBudget} />
+      ) : null}
+      {transactions !== null &&
+      transactions.length > 0 &&
+      transactions &&
+      Object.keys(categories).length > 0 ? (
+        <CategoryChart categoryMap={categories} totalSpent={totalSpent} />
       ) : null}
     </>
   );
