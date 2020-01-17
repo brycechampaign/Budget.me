@@ -1,20 +1,18 @@
-const { getUserTxsInMonth, addTransaction, getGoal } = require('./models.js');
+const {
+  getUserTxsInMonth,
+  addTransaction,
+  getGoal,
+  createBudget
+} = require('./models.js');
 
 module.exports.getUserTxnsInMonth = async (user, month) => {
   let transactions = await getUserTxsInMonth(user, month);
 
   transactions.sort((a, b) => {
-    const dateA = new Date(a.date).getDate();
-    const dateB = new Date(b.date).getDate();
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
 
-    if (dateA > dateB) {
-      return -1;
-    }
-    if (dateB > dateA) {
-      return 1;
-    }
-
-    return 0;
+    return dateB - dateA;
   });
 
   return transactions;
@@ -33,4 +31,8 @@ module.exports.addTransaction = (
 
 module.exports.getGoal = (user, month) => {
   return getGoal(user, month);
+};
+
+module.exports.createBudget = (user, month, goal) => {
+  return createBudget(user, month, goal);
 };

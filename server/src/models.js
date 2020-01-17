@@ -1,23 +1,17 @@
 const { Tx, Month, Budget } = require('../db/index');
 
-module.exports.createBudget = (user, goal, ...transaction) => {
-  categories = [
-    { name: 'coffee', limit: 20 },
-    { name: 'Fun times', limit: 10 }
-  ];
-
+module.exports.createBudget = (user, monthNum, goal) => {
   const month = new Month({
     goal,
-    num: new Date().getMonth()
+    num: monthNum
   });
 
   const budget = new Budget({
     user,
-    months: [month],
-    categories
+    months: [month]
   });
 
-  budget.save();
+  return budget.save();
 };
 
 module.exports.getUserTxsInMonth = async (user, month) => {

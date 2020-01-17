@@ -35,7 +35,8 @@ const HistoryChart = ({ transactions, budget }) => {
 
   if (transactions !== null) {
     const options = {
-      height: '40vh'
+      height: '40vh',
+      low: 5
     };
 
     const type = 'Line';

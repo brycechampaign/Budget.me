@@ -4,10 +4,11 @@ import Overview from './Overview';
 import HistoryChart from './HistoryChart';
 import CategoryChart from './CategoryChart';
 import TxContainer from './TxContainer';
+import BudgetForm from './BudgetForm';
 
 export default () => {
   const [transactions, setTransactions] = useState([]);
-  const [user, setUser] = useState('bryce');
+  const [user, setUser] = useState(null);
   const [monthlyBudget, setMonthlyBudget] = useState(null);
   const [month, setMonth] = useState(null);
   const [totalSpent, setTotalSpent] = useState(null);
@@ -54,6 +55,11 @@ export default () => {
 
   useEffect(() => {
     setMonth(new Date().getMonth());
+    updateMonthlyBudget();
+
+    if (user === null) {
+      setUser(localStorage.getItem('user', user) || null);
+    }
   }, []);
 
   useEffect(() => {
@@ -69,33 +75,37 @@ export default () => {
     }
   }, [transactions]);
 
-  return (
-    <>
-      <h1>
-        Welcome back, <span id="username">{user}</span>
-      </h1>
-      <Overview
-        budget={monthlyBudget}
-        totalSpent={totalSpent}
-        income={income}
-      />
-      <TxContainer
-        transactions={transactions}
-        user={user}
-        updateTransactions={updateTransactions}
-      />
-      {transactions !== null &&
-      transactions.length > 0 &&
-      monthlyBudget !== null &&
-      transactions ? (
-        <HistoryChart transactions={transactions} budget={monthlyBudget} />
-      ) : null}
-      {transactions !== null &&
-      transactions.length > 0 &&
-      transactions &&
-      Object.keys(categories).length > 0 ? (
-        <CategoryChart categoryMap={categories} totalSpent={totalSpent} />
-      ) : null}
-    </>
-  );
+  if (user === null) {
+    return <BudgetForm setUser={setUser} />;
+  } else {
+    return (
+      <>
+        <h1>
+          Welcome back, <span id="username">{user}</span>
+        </h1>
+        <Overview
+          budget={monthlyBudget}
+          totalSpent={totalSpent}
+          income={income}
+        />
+        <TxContainer
+          transactions={transactions}
+          user={user}
+          updateTransactions={updateTransactions}
+        />
+        {transactions !== null &&
+        transactions.length > 0 &&
+        monthlyBudget !== null &&
+        transactions ? (
+          <HistoryChart transactions={transactions} budget={monthlyBudget} />
+        ) : null}
+        {transactions !== null &&
+        transactions.length > 0 &&
+        transactions &&
+        Object.keys(categories).length > 0 ? (
+          <CategoryChart categoryMap={categories} totalSpent={totalSpent} />
+        ) : null}
+      </>
+    );
+  }
 };

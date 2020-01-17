@@ -21,3 +21,11 @@ export const addTransaction = (user, tx) => {
 export const getMonthlyBudget = (user, month) => {
   return axios.get(`/goals/${user}/${month}`).then(results => results.data);
 };
+
+export const createBudget = (user, month, goal) => {
+  return axios.post('/budgets', {
+    user,
+    month,
+    goal
+  });
+};
