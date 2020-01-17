@@ -9,7 +9,7 @@ const TxContainer = ({ transactions, user, updateTransactions }) => {
         <h2 id="txContainerHeader">Transactions</h2>
         <AddTxForm user={user} updateTransactions={updateTransactions} />
       </div>
-      <hr></hr>
+
       <div id="tx-body">
         {transactions.map(tx => {
           const { date, category, amount, recipient, notes } = tx;
@@ -22,7 +22,6 @@ const TxContainer = ({ transactions, user, updateTransactions }) => {
                 recipient={recipient}
                 notes={notes}
               />
-              <hr></hr>
             </>
           );
         })}
