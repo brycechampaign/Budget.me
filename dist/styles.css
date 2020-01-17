@@ -88,12 +88,16 @@ body {
 #header {
   background-color: #9554ae;
   margin: 0;
-  height: 50px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 1%;
   color: white;
+}
+
+#header-text {
+  font-size: 30px;
 }
 
 #footer {
@@ -125,9 +129,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 40vw;
-  /* height: 80vh; */
+  height: 80vh;
   justify-content: center;
-  /* overflow-y: scroll; */
 }
 
 #container-head {
@@ -157,7 +160,7 @@ body {
 }
 
 #tx-body {
-  height: 50vh;
+  height: 80vh;
   overflow-y: scroll;
 }
 
@@ -231,4 +234,69 @@ body {
 
 #category-container {
   display: flex;
+  justify-content: space-between;
+}
+
+#favorite {
+  font-size: 50px;
+  color: #9554ae;
+  font-weight: bold;
+}
+
+#favorite-container {
+  margin-right: 5%;
+}
+
+#budget-form-container {
+  height: 75vh;
+}
+
+#budget-form-card {
+  height: 50vh;
+  width: 50vw;
+  padding: 5%;
+  font-size: 30px;
+}
+
+#budget-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#budget-form input[type='submit'] {
+  margin-top: 7%;
+}
+
+.budget-form-item {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: 50%;
+}
+
+.budget-form-item input {
+  width: 100%;
+}
+
+#month-number {
+  display: flex;
+  justify-content: space-between;
+}
+
+#month-number input {
+  width: 100%;
+}
+
+input[type='text'],
+input[type='number'],
+textarea,
+select {
+  border: 1px solid black;
+  padding: 0.5em;
+  background-color: var(white);
+  color: black;
+}
+
+input:focus {
+  outline: none;
 }
