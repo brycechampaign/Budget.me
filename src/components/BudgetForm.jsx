@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createBudget } from '../server-helpers';
+import { createBudget, checkUser } from '../server-helpers';
 
 const BudgetForm = ({ setUser: setAppUser }) => {
   const [user, setUser] = useState('');
@@ -7,9 +7,16 @@ const BudgetForm = ({ setUser: setAppUser }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createBudget(user, new Date().getMonth(), goal).then(() =>
-      setAppUser(user)
-    );
+
+    checkUser(user).then(doesExist => {
+      if (doesExist) {
+        setAppUser(user);
+      } else {
+        createBudget(user, new Date().getMonth(), goal).then(() =>
+          setAppUser(user)
+        );
+      }
+    });
   };
 
   return (
