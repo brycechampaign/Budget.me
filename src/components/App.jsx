@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TxContainer from './TxContainer';
 import { getTransactionsForMonth, getMonthlyBudget } from '../server-helpers';
 import Overview from './Overview';
+import HistoryChart from './HistoryChart';
 
 export default () => {
   const [transactions, setTransactions] = useState([]);
@@ -70,6 +71,12 @@ export default () => {
         user={user}
         updateTransactions={updateTransactions}
       />
+      {transactions !== null &&
+      transactions.length > 0 &&
+      monthlyBudget !== null &&
+      transactions ? (
+        <HistoryChart transactions={transactions} budget={monthlyBudget} />
+      ) : null}
     </>
   );
 };

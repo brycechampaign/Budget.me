@@ -26,7 +26,7 @@ const Tx = ({ date, category, amount, recipient, notes = null }) => {
     <div className="tx">
       <div id="tx-date">
         <p>{getMonthString(dateObj.getMonth())}</p>
-        <p>{dateObj.getDay()}</p>
+        <p>{dateObj.getDate()}</p>
       </div>
       <div
         className="tx-middle"
@@ -39,7 +39,7 @@ const Tx = ({ date, category, amount, recipient, notes = null }) => {
         className="tx-amount"
         style={isIncome ? { color: 'green' } : { color: 'red' }}
       >
-        {isIncome ? '+' : '-' + '$' + amount.toFixed(2)}
+        {(isIncome ? '+' : '-') + '$' + amount.toFixed(2)}
       </p>
     </div>
   );
