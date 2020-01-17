@@ -26,7 +26,7 @@ const Tx = ({ date, category, amount, recipient, notes = null }) => {
     <div className="tx">
       <div id="tx-date">
         <p>{getMonthString(dateObj.getMonth())}</p>
-        <p>{dateObj.getDate()}</p>
+        <p>{dateObj.getDate() + 1}</p>
       </div>
       <div
         className="tx-middle"

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Line } from 'react-chartjs-2';
 import Tx from './Tx';
 import ChartistGraph from 'react-chartist';
 import Chartist from 'chartist';
@@ -12,15 +11,12 @@ const HistoryChart = ({ transactions, budget }) => {
 
   for (let i = 1; i <= maxDate; i++) {
     labels.push(i);
-    console.log('BUDGET', i, newBudget);
 
     let balanceForDay = transactions.reduce((acc, curr) => {
       if (new Date(curr.date).getDate() === i) {
         if (curr.category === 'income') {
-          console.log(acc + curr.amount);
           return acc + curr.amount;
         } else {
-          console.log(acc - curr.amount);
           return acc - curr.amount;
         }
       } else {
@@ -44,7 +40,7 @@ const HistoryChart = ({ transactions, budget }) => {
 
     const type = 'Line';
     return (
-      <div className="card" id="chart-container">
+      <div className="card chart-container">
         <h2>Your Month so Far</h2>
         <ChartistGraph data={dataSet} type={type} options={options} />
       </div>
