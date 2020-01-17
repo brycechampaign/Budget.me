@@ -210,7 +210,7 @@ body {
   margin-right: 10%;
 }
 
-#chart-container {
+.chart-container {
   width: 40vw;
   padding: 2%;
 }
