@@ -1,8 +1,10 @@
 const router = require('express').Router();
+const path = require('path');
 const {
   getUserTxnsInMonth,
   addTransaction,
-  getGoal
+  getGoal,
+  createBudget
 } = require('./controllers.js');
 
 router.get('/transactions/:user/:month', (req, res) => {
@@ -26,6 +28,17 @@ router.get('/goals/:user/:month', (req, res) => {
   getGoal(user, Number(month))
     .then(goal => res.send(JSON.stringify(goal)))
     .catch(() => res.send(404));
+});
+
+router.post('/budgets', (req, res) => {
+  const { user, month, goal } = req.body;
+  createBudget(user, month, goal)
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(500));
+});
+
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
 module.exports = router;
