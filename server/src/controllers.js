@@ -2,7 +2,8 @@ const {
   getUserTxsInMonth,
   addTransaction,
   getGoal,
-  createBudget
+  createBudget,
+  getUser
 } = require('./models.js');
 
 module.exports.getUserTxnsInMonth = async (user, month) => {
@@ -35,4 +36,10 @@ module.exports.getGoal = (user, month) => {
 
 module.exports.createBudget = (user, month, goal) => {
   return createBudget(user, month, goal);
+};
+
+module.exports.getUser = async user => {
+  const budget = await getUser(user);
+  if (budget === null) return false;
+  else return true;
 };

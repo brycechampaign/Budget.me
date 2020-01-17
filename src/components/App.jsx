@@ -56,11 +56,14 @@ export default () => {
   useEffect(() => {
     setMonth(new Date().getMonth());
     updateMonthlyBudget();
+    updateTransactions();
 
     if (user === null) {
       setUser(localStorage.getItem('user', user) || null);
+    } else {
+      localStorage.setItem('user', user);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (month !== null) {
