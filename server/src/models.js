@@ -63,3 +63,8 @@ module.exports.getGoal = async (user, month) => {
     }
   }
 };
+
+module.exports.getUser = async user => {
+  const budget = await Budget.findOne({ user });
+  return budget;
+};
