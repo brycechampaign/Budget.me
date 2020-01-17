@@ -32,9 +32,9 @@ const CategoryChart = ({ categoryMap, totalSpent }) => {
         <h2>Category Distribution</h2>
         <ChartistGraph data={data} type={type} options={options} />
       </div>
-      <div>
+      <div id="favorite-container">
         <h2>Wow, you really like:</h2>
-        <span>{mostExpensive}</span>
+        <span id="favorite">{mostExpensive}</span>
       </div>
     </div>
   );
