@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const router = require('./routes');
 const bodyParser = require('body-parser');
-const PORT = process.env.port || 3002;
+const PORT = process.env.PORT;
 
 app.use(express.static('./dist'));
 app.use(bodyParser.json());
