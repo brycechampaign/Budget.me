@@ -20,9 +20,10 @@ const AddTxForm = ({ user, updateTransactions }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState();
-  const [recipient, setRecipient] = useState('');
+  const [recipient, setRecipient] = useState();
   const [date, setDate] = useState();
   const [notes, setNotes] = useState('');
+  const [isIncome, setIsIncome] = useState(false);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -41,6 +42,9 @@ const AddTxForm = ({ user, updateTransactions }) => {
       date,
       notes
     };
+
+    if (recipient === undefined) tx.recipient = 'Deposit';
+    if (category === undefined) tx.category = 'income';
 
     addTransaction(user, tx)
       .then(() => updateTransactions())
@@ -69,27 +73,34 @@ const AddTxForm = ({ user, updateTransactions }) => {
               id="amount"
               onChange={e => setAmount(e.target.value)}
             />
-
             <br />
+
+            <label htmlFor="isIncome">Income</label>
+            <input
+              type="checkbox"
+              name="isIncome"
+              value="income"
+              onChange={e => setIsIncome(!isIncome)}
+            />
+
+            <br></br>
 
             <label htmlFor="category">Category</label>
             <input
               name="category"
               id="category"
               onChange={e => setCategory(e.target.value)}
+              disabled={isIncome}
             />
-
             <br />
-
             <label htmlFor="recipient">Recipient</label>
             <input
               name="recipient"
               id="recipient"
               onChange={e => setRecipient(e.target.value)}
+              disabled={isIncome}
             />
-
             <br />
-
             <label htmlFor="date">Date</label>
             <input
               type="date"
@@ -97,9 +108,7 @@ const AddTxForm = ({ user, updateTransactions }) => {
               id="date"
               onChange={e => setDate(e.target.value)}
             />
-
             <br />
-
             <label htmlFor="notes">Notes</label>
             <input
               type="textarea"
@@ -107,7 +116,6 @@ const AddTxForm = ({ user, updateTransactions }) => {
               id="notes"
               onChange={e => setNotes(e.target.value)}
             />
-
             <br />
             <div id="add-tx-buttons">
               <button onClick={closeModal}>Cancel</button>
