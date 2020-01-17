@@ -29,3 +29,7 @@ export const createBudget = (user, month, goal) => {
     goal
   });
 };
+
+export const checkUser = user => {
+  return axios.get(`/users/${user}`).then(results => results.data);
+};
