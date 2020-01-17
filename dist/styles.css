@@ -127,6 +127,20 @@ body {
   margin-top: 10%;
 }
 
+#add-tx-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#add-tx-buttons {
+  display: flex;
+}
+
+#add-tx-form input[type='submit'] {
+  margin-left: 5%;
+}
+
 #tx-body {
   height: 50vh;
   overflow-y: scroll;
