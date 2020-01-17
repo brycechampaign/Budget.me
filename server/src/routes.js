@@ -4,7 +4,8 @@ const {
   getUserTxnsInMonth,
   addTransaction,
   getGoal,
-  createBudget
+  createBudget,
+  getUser
 } = require('./controllers.js');
 
 router.get('/transactions/:user/:month', (req, res) => {
@@ -37,8 +38,9 @@ router.post('/budgets', (req, res) => {
     .catch(() => res.sendStatus(500));
 });
 
-router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../dist/index.html'));
+router.get('/users/:user', (req, res) => {
+  console.log(req.params.user);
+  getUser(req.params.user).then(results => res.send(results));
 });
 
 module.exports = router;
