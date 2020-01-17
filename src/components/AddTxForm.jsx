@@ -61,57 +61,60 @@ const AddTxForm = ({ user, updateTransactions }) => {
         <h2>Add Transaction</h2>
 
         <form onSubmit={handleSubmit}>
-          <label htmlFor="amount">Amount</label>
-          <input
-            type="number"
-            name="amount"
-            id="amount"
-            onChange={e => setAmount(e.target.value)}
-          />
+          <div id="add-tx-form">
+            <label htmlFor="amount">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              id="amount"
+              onChange={e => setAmount(e.target.value)}
+            />
 
-          <br />
+            <br />
 
-          <label htmlFor="category">Category</label>
-          <input
-            name="category"
-            id="category"
-            onChange={e => setCategory(e.target.value)}
-          />
+            <label htmlFor="category">Category</label>
+            <input
+              name="category"
+              id="category"
+              onChange={e => setCategory(e.target.value)}
+            />
 
-          <br />
+            <br />
 
-          <label htmlFor="recipient">Recipient</label>
-          <input
-            name="recipient"
-            id="recipient"
-            onChange={e => setRecipient(e.target.value)}
-          />
+            <label htmlFor="recipient">Recipient</label>
+            <input
+              name="recipient"
+              id="recipient"
+              onChange={e => setRecipient(e.target.value)}
+            />
 
-          <br />
+            <br />
 
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            name="date"
-            id="date"
-            onChange={e => setDate(e.target.value)}
-          />
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              name="date"
+              id="date"
+              onChange={e => setDate(e.target.value)}
+            />
 
-          <br />
+            <br />
 
-          <label htmlFor="notes">Notes</label>
-          <input
-            type="textarea"
-            name="notes"
-            id="notes"
-            onChange={e => setNotes(e.target.value)}
-          />
+            <label htmlFor="notes">Notes</label>
+            <input
+              type="textarea"
+              name="notes"
+              id="notes"
+              onChange={e => setNotes(e.target.value)}
+            />
 
-          <br />
-
-          <input type="submit" value="submit" />
+            <br />
+            <div id="add-tx-buttons">
+              <button onClick={closeModal}>Cancel</button>
+              <input type="submit" value="submit" />
+            </div>
+          </div>
         </form>
-        <button onClick={closeModal}>Cancel</button>
       </Modal>
     </div>
   );
