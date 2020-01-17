@@ -2,7 +2,7 @@ import React from 'react';
 
 const Overview = ({ budget, totalSpent, income }) => {
   const totalLeft = budget - totalSpent + income;
-  const percentDifference = ((totalLeft / budget) * 100).toFixed(2);
+  const percentDifference = ((totalSpent / budget) * 100).toFixed(2);
   return (
     <div id="overview" className="card">
       <div>
@@ -27,11 +27,15 @@ const Overview = ({ budget, totalSpent, income }) => {
             <h3>Total Income: ${income !== null ? income.toFixed(2) : null}</h3>
           </div>
           <div id="percent-container">
-            <h1 style={totalLeft < 0 ? { color: 'red' } : { color: 'green' }}>
+            <h1
+              style={
+                totalSpent > budget ? { color: 'red' } : { color: 'green' }
+              }
+            >
               {Math.abs(percentDifference)}%
             </h1>
             <h3 style={{ 'margin-top': '0' }}>
-              {percentDifference < 0 ? 'Over Budget' : 'Under Budget'}
+              {totalSpent > budget ? 'Over Budget' : 'Under Budget'}
             </h3>
           </div>
         </div>
