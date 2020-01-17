@@ -14,9 +14,9 @@ router.get('/transactions/:user/:month', (req, res) => {
 
 router.post('/transactions/:user', (req, res) => {
   const { user } = req.params;
-  const { category, amount, recipient, notes } = req.body;
+  const { category, amount, recipient, notes, date } = req.body;
 
-  addTransaction(user, category, amount, recipient, notes, (date = new Date()))
+  addTransaction(user, category, amount, recipient, notes, new Date(date))
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
 });
