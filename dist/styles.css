@@ -119,6 +119,7 @@ body {
 }
 
 .tx {
+  cursor: pointer;
   margin: 0 auto;
   width: 90%;
   display: flex;
