@@ -39,8 +39,11 @@ router.post('/budgets', (req, res) => {
 });
 
 router.get('/users/:user', (req, res) => {
-  console.log(req.params.user);
   getUser(req.params.user).then(results => res.send(results));
+});
+
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
 module.exports = router;
