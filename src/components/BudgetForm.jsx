@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { createBudget, checkUser } from '../server-helpers';
+import { useRouteMatch, Redirect, Route } from 'react-router-dom';
 
-const BudgetForm = ({ setUser: setAppUser }) => {
+const BudgetForm = ({ setIsLoggedIn, setUser: setAppUser }) => {
   const [user, setUser] = useState('');
   const [goal, setGoal] = useState();
+  const match = useRouteMatch();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -12,9 +14,9 @@ const BudgetForm = ({ setUser: setAppUser }) => {
       if (doesExist) {
         setAppUser(user);
       } else {
-        createBudget(user, new Date().getMonth(), goal).then(() =>
-          setAppUser(user)
-        );
+        createBudget(user, new Date().getMonth(), goal).then(() => {
+          setAppUser(user);
+        });
       }
     });
   };
