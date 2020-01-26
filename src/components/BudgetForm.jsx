@@ -23,8 +23,8 @@ const BudgetForm = ({ setIsLoggedIn, setUser: setAppUser }) => {
 
   return (
     <div id="budget-form-container">
-      <h1>Create a New Budget</h1>
       <div className="card" id="budget-form-card">
+        <h2>Create a New Budget</h2>
         <form id="budget-form" onSubmit={e => handleSubmit(e)}>
           <div className="budget-form-item">
             <label htmlFor="user">Username</label>
@@ -34,11 +34,12 @@ const BudgetForm = ({ setIsLoggedIn, setUser: setAppUser }) => {
               name="user"
               id="user"
               onChange={e => setUser(e.target.value)}
+              placeholder="Type your username"
             />
           </div>
 
           <div className="budget-form-item" id="month-number">
-            <div>
+            <div style={{ width: '100%' }}>
               <label htmlFor="goal">Target budget</label>
               <br />
               <input
@@ -46,6 +47,7 @@ const BudgetForm = ({ setIsLoggedIn, setUser: setAppUser }) => {
                 name="goal"
                 id="goal"
                 onChange={e => setGoal(e.target.value)}
+                placeholder="Type your target monthly budget"
               />
             </div>
           </div>

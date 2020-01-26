@@ -4,10 +4,6 @@
   font-family: 'Libre Franklin', sans-serif;
 }
 
-*:focus {
-  outline: none;
-}
-
 hr {
   border: 0;
   clear: both;
@@ -15,6 +11,12 @@ hr {
   width: 96%;
   background-color: black;
   height: 1px;
+}
+
+input {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
 }
 
 button,
@@ -29,12 +31,11 @@ input[type='submit'] {
   text-align: center;
   text-decoration: none;
   margin: 2px 0;
-  border: solid 1px transparent;
   border-radius: 4px;
   padding: 0.5em 1em;
   color: #ffffff;
   background-color: #9555af;
-  outline: 0;
+  outline: none;
   box-shadow: 1px 4px 7px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -42,13 +43,17 @@ button:active,
 input[type='submit']:active {
   transform: translateY(1px);
   filter: saturate(150%);
-  outline: 0;
+  outline: none;
+  text-decoration: none;
+  -webkit-appearance: none;
 }
 
 button {
   outline: none;
   box-shadow: 1px 4px 7px 2px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+  text-decoration: none;
+  -webkit-appearance: none;
 }
 
 button::-moz-focus-inner {
@@ -60,17 +65,18 @@ button::-moz-focus-inner {
 
 button:hover,
 input[type='submit']:hover {
-  color: white;
-  border-color: currentColor;
   background-color: #8c4ea3;
-  outline: 0;
+  outline: none;
+  text-decoration: none;
 }
 
 button:focus {
   outline: none;
+  text-decoration: none;
   border: 0;
   box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
     0 0 0 1.5px rgba(255, 105, 180, 0.5);
+  -webkit-appearance: none;
 }
 
 body {
@@ -271,25 +277,41 @@ body {
 
 #budget-form-card {
   height: 50vh;
-  width: 50vw;
-  padding: 5%;
-  font-size: 30px;
-}
-
-#budget-form {
+  width: 20vw;
+  padding: 10%;
+  font-size: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+#budget-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 #budget-form input[type='submit'] {
+  font-size: 20px;
   margin-top: 7%;
+}
+
+#budget-form input {
+  font-size: 20px;
+  margin-top: 5%;
+  width: 100%;
+}
+
+#budget-form label {
+  color: #787575;
+  font-size: 15px;
+  margin-bottom: 2%;
 }
 
 .budget-form-item {
   margin-top: 3%;
   margin-bottom: 3%;
-  width: 50%;
+  width: 100%;
 }
 
 .budget-form-item input {
@@ -305,16 +327,25 @@ body {
   width: 100%;
 }
 
-input[type='text'],
-input[type='number'],
-textarea,
-select {
-  border: 1px solid black;
-  padding: 0.5em;
-  background-color: var(white);
-  color: black;
+input[type='text'] {
+  width: 50%;
 }
 
-input:focus {
-  outline: none;
+/* Input placeholder styling */
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-size: 20px;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 20px;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: 20px;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  font-size: 20px;
 }
